@@ -4586,6 +4586,7 @@ impl std::default::Default for CheckoutSessionSubmitType {
 pub enum CheckoutSessionUiMode {
     Embedded,
     Hosted,
+    Custom,
 }
 
 impl CheckoutSessionUiMode {
@@ -4593,6 +4594,7 @@ impl CheckoutSessionUiMode {
         match self {
             CheckoutSessionUiMode::Embedded => "embedded",
             CheckoutSessionUiMode::Hosted => "hosted",
+            CheckoutSessionUiMode::Custom => "custom",
         }
     }
 }
