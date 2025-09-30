@@ -36,7 +36,7 @@ impl From<http_types::Error> for StripeError {
 }
 
 /// The list of possible values for a RequestError's type.
-#[derive(Debug, PartialEq, Deserialize, Default)]
+#[derive(Clone, Copy, Debug, PartialEq, Deserialize, Default)]
 pub enum ErrorType {
     #[serde(skip_deserializing)]
     #[default]
@@ -78,6 +78,7 @@ pub enum ErrorCode {
     AmountTooLarge,
     AmountTooSmall,
     ApiKeyExpired,
+    AuthenticationRequired,
     BalanceInsufficient,
     BankAccountExists,
     BankAccountUnusable,
@@ -187,11 +188,18 @@ pub struct RequestError {
 
     /// The ID of the failed charge, if applicable.
     pub charge: Option<String>,
+
+    pub payment_intent: Option<PaymentIntentRef>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct PaymentIntentRef {
+    pub id: String,
 }
 
 /// The structure of the json body when an error is included in
 /// the response from Stripe.
-#[derive(Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct ErrorResponse {
     pub error: RequestError,
 }
