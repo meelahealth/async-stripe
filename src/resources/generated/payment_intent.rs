@@ -2,6 +2,8 @@
 // This file was automatically generated.
 // ======================================
 
+use serde::{Deserialize, Serialize};
+
 use crate::client::{Client, Response};
 use crate::ids::{
     CustomerId, MandateId, PaymentIntentId, PaymentMethodConfigurationId, PaymentMethodId,
@@ -15,7 +17,6 @@ use crate::resources::{
     PaymentMethodDetailsCardInstallmentsPlan, PaymentMethodOptionsCustomerBalanceEuBankAccount,
     PaymentMethodOptionsUsBankAccountMandateOptions, PaymentSource, Review, Shipping,
 };
-use serde::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "PaymentIntent".
 ///
@@ -8857,6 +8858,7 @@ pub enum PaymentIntentCancellationReason {
     Abandoned,
     Automatic,
     Duplicate,
+    Expired,
     FailedInvoice,
     Fraudulent,
     RequestedByCustomer,
@@ -8869,6 +8871,7 @@ impl PaymentIntentCancellationReason {
             PaymentIntentCancellationReason::Abandoned => "abandoned",
             PaymentIntentCancellationReason::Automatic => "automatic",
             PaymentIntentCancellationReason::Duplicate => "duplicate",
+            PaymentIntentCancellationReason::Expired => "expried",
             PaymentIntentCancellationReason::FailedInvoice => "failed_invoice",
             PaymentIntentCancellationReason::Fraudulent => "fraudulent",
             PaymentIntentCancellationReason::RequestedByCustomer => "requested_by_customer",
